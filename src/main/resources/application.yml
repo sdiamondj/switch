@@ -1,0 +1,23 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  resources:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/switch
+    driver-class-name: org.postgresql.Driver
+    password: 1234
+    username: postgres
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml

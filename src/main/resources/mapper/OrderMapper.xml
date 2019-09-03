@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.ncu.dao.OrderDao">
+    <resultMap id="result_map" type="cn.edu.ncu.entity.Order">
+        <result property="order_id" column="order_id"/>
+        <result property="user_id" column="user_id"/>
+        <result property="battery_id" column="battery_id"/>
+        <result property="order_state" column="order_state"/>
+        <result property="borrow_time" column="borrow_time"/>
+        <result property="return_time" column="return_time"/>
+        <result property="order_price" column="order_price"/>
+
+    </resultMap>
+
+
+    <select id="getAllOrderByUserId" resultMap="result_map">
+        select * from switch_order
+        where user_id = #{user_id}
+    </select>
+
+    <insert id="createOrder">
+        insert into switch_order(order_id, battery_id, borrow_time, order_state,user_id)
+        values(#{order_id},#{battery_id},now(),1,#{user_id})
+    </insert>
+    
+    <select id="getOrderByUserIdAndState" resultMap="result_map">
+        select * from switch_order
+        where user_id = #{user_id} and order_state = #{order_state}
+    </select>
+
+    <update id="finishOrder">
+        update switch_order
+        set order_state = 2,order_price = #{order_price},return_time = now()
+        where order_id = #{order_id}
+    </update>
+
+    <select id="getOrderByUserIdAndStateAndBatteryId" resultMap="result_map">
+        select * from switch_order
+        where user_id = #{user_id} and order_state = #{order_state}
+        and battery_id = #{battery_id}
+    </select>
+
+</mapper>

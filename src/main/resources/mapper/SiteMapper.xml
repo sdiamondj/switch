@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.ncu.dao.SiteDao">
+    <resultMap id="result_map" type="cn.edu.ncu.entity.Site">
+        <result property="site_id" column="site_id"/>
+        <result property="site_name" column="site_name"/>
+        <result property="site_x" column="site_x"/>
+        <result property="site_y" column="site_y"/>
+        <result property="box_num" column="box_num"/>
+    </resultMap>
+
+    <select id="getAllSite" resultMap="result_map">
+        select * from switch_site
+    </select>
+
+    <select id="getSiteBySiteId" resultMap="result_map">
+        select * from switch_site
+        where site_id = #{site_id}
+    </select>
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.ncu.dao.BatteryDao">
+    <resultMap id="result_map" type="cn.edu.ncu.entity.Battery">
+        <result property="battery_id" column="battery_id"/>
+        <result property="battery_state" column="battery_state"/>
+        <result property="box_id" column="box_id"/>
+
+    </resultMap>
+
+    <select id="getAllBattery" resultMap="result_map">
+        select * from switch_battery
+    </select>
+
+    <insert id="insertBattery">
+        insert into switch_battery(battery_id, box_id)
+        values(#{battery_id},#{box_id})
+    </insert>
+
+    <select id="getBatteryByBoxId" resultMap="result_map">
+        select * from switch_battery
+        where box_id = #{box_id}
+    </select>
+
+    <select id="getBatteryByBatteryId" resultMap="result_map">
+        select * from switch_battery
+        where battery_id = #{battery_id}
+    </select>
+
+    <update id="updateBoxId">
+        update switch_battery
+        set box_id = #{box_id}
+        where battery_id = #{battery_id}
+    </update>
+</mapper>
